@@ -6,6 +6,7 @@ snake[0] = {
     x: 8 * box, 
     y: 8 * box
 }
+let direction = "r"
 
 function createBg() {
     context.fillStyle = "lightgreen"
@@ -19,5 +20,26 @@ function createSnake() {
     }
 }
 
-createBg()
-createSnake()
+function startGame() {
+    createBg()
+    createSnake()
+
+    let snakeX = snake[0].x
+    let snakeY = snake[0].y
+
+    if(direction == "r") snakeX += box
+    if(direction == "l") snakeX -= box
+    if(direction == "u") snakeY -= box
+    if(direction == "d") snakeY += box
+
+    snake.pop()
+
+    let step = {
+        x: snakeX,
+        y: snakeY
+    }
+
+    snake.unshift(step)
+}
+
+let game = setInterval(startGame, 100)
