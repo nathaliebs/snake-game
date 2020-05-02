@@ -20,7 +20,21 @@ function createSnake() {
     }
 }
 
+document.addEventListener('keydown', update)
+
+function update(event) {
+    if(event.keyCode == 37 && direction != "r") direction = "l"
+    if(event.keyCode == 38 && direction != "d") direction = "u"
+    if(event.keyCode == 39 && direction != "l") direction = "r"
+    if(event.keyCode == 40 && direction != "u") direction = "d"
+}
+
 function startGame() {
+    if(snake[0].x > 15 * box && direction == "r") snake[0].x = 0
+    if(snake[0].x < 0 * box && direction == "l") snake[0].x =  16 * box
+    if(snake[0].y < 0 * box && direction == "u") snake[0].y = 16 * box
+    if(snake[0].y > 15 * box && direction == "d") snake[0].y =  0
+
     createBg()
     createSnake()
 
